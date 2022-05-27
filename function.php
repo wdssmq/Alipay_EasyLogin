@@ -6,6 +6,7 @@ function Alipay_EasyLogin_Login($ref_url = null)
   if ($zbp->Config('Alipay_EasyLogin')->on != '1') {
     return;
   }
+  // 获取实例
   $objAlipay = Alipay_EasyLogin_Init();
   // 授权完成后默认返回的页面
   if ($ref_url) {
@@ -16,6 +17,7 @@ function Alipay_EasyLogin_Login($ref_url = null)
   //   return;
   // }
   if ($objAlipay->errCode === 0) {
+    // 跳转到支付宝登录页面
     $AuthorizeUrl = $objAlipay->GetAuthorizeUrl();
     Redirect($AuthorizeUrl);
   } else {
@@ -23,7 +25,7 @@ function Alipay_EasyLogin_Login($ref_url = null)
   }
 }
 
-// 初始化支付宝 SDK
+// 初始化支付宝登录类
 function Alipay_EasyLogin_Init()
 {
   global $zbp;
